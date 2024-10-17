@@ -6,6 +6,6 @@ class UrlConstants {
   static const newsEverythingPath = '/v2/everything';
   static const newFavouritePath = '/v2/top-headlines';
 
-  static const weatherBaseUrl = '';
-  static const weatherPath = '';
+  static const weatherBaseUrl = 'https://api.weatherapi.com';
+  static const weatherPath = '/v1/current.json';
 }

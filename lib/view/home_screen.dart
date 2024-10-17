@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/home/home_cubit.dart';
 import 'package:news_app/utils/dependency.dart';
+import 'package:news_app/widget/custom_widget/weather_card.dart';
 import 'package:news_app/widget/page/home_all.dart';
 import 'package:news_app/widget/page/home_favourite.dart';
 import 'package:news_app/widget/page/home_saved.dart';
@@ -31,12 +32,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: [
-            SizedBox(
-              height: 150,
-              child: Center(
-                child: BlocConsumer<HomeCubit, HomeState>(
+      body: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).viewPadding.top,
+          ),
+          SizedBox(
+            height: 150,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BlocConsumer<HomeCubit, HomeState>(
                   bloc: homeCubit,
                   listener: (context, state) {
                     state.maybeMap(
@@ -49,10 +55,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, state) {
                     return state.maybeWhen(
                       internetAvailable: (value) {
-                        return Text(value);
+                        return Text(
+                          value,
+                          style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
                       },
                       noInternetState: (value) {
-                        return Text(value);
+                        return Text(
+                          value,
+                          style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
                       },
                       orElse: () {
                         return const SizedBox.shrink();
@@ -60,48 +78,63 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-              ),
-            ),
-            Expanded(
-              child: PageView(
-                controller: _controller,
-                children: const [
-                  HomeAll(),
-                  HomeFavourite(),
-                  HomeSaved(),
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: ValueListenableBuilder(
-          valueListenable: _indexNotifier,
-          builder: (context, value, child) {
-            return BottomNavigationBar(
-              currentIndex: value,
-              onTap: _controller.jumpToPage,
-              items: const [
-                BottomNavigationBarItem(
-                  label: 'All',
-                  icon: Icon(
-                    Icons.home,
-                  ),
-                ),
-                BottomNavigationBarItem(
-                  label: 'Favourites',
-                  icon: Icon(
-                    Icons.favorite,
-                  ),
-                ),
-                BottomNavigationBarItem(
-                  label: 'Saved',
-                  icon: Icon(
-                    Icons.save,
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      WeatherCard(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.settings),
+                      ),
+                    ],
                   ),
                 ),
               ],
-            );
-          },
-        ),);
+            ),
+          ),
+          Expanded(
+            child: PageView(
+              controller: _controller,
+              children: const [
+                HomeAll(),
+                HomeFavourite(),
+                HomeSaved(),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: ValueListenableBuilder(
+        valueListenable: _indexNotifier,
+        builder: (context, value, child) {
+          return BottomNavigationBar(
+            currentIndex: value,
+            onTap: _controller.jumpToPage,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'All',
+                icon: Icon(
+                  Icons.home,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: 'Favourites',
+                icon: Icon(
+                  Icons.favorite,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: 'Saved',
+                icon: Icon(
+                  Icons.save,
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }

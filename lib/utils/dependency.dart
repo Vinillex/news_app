@@ -6,6 +6,7 @@ import 'package:news_app/bloc/home_saved/home_saved_cubit.dart';
 import 'package:news_app/bloc/initial_cubit/initial_cubit.dart';
 import 'package:news_app/bloc/location/location_cubit.dart';
 import 'package:news_app/bloc/onboarding/onboarding_cubit.dart';
+import 'package:news_app/bloc/weather/weather_cubit.dart';
 import 'package:news_app/services/onboarding_service.dart';
 import 'package:news_app/services/saved_news_service.dart';
 
@@ -21,7 +22,8 @@ void setup() {
     ..registerFactory<HomeAllCubit>(HomeAllCubit.new)
     ..registerFactory<HomeFavouriteCubit>(HomeFavouriteCubit.new)
     ..registerFactory<HomeSavedCubit>(HomeSavedCubit.new)
-    ..registerFactory<HomeCubit>(HomeCubit.new);
+    ..registerFactory<HomeCubit>(HomeCubit.new)
+    ..registerFactory<WeatherCubit>(WeatherCubit.new);
 }
 
 final onboardingService = GetIt.instance<OnboardingService>();
@@ -34,3 +36,4 @@ final homeAllCubit = GetIt.instance<HomeAllCubit>();
 final homeFavouriteCubit = GetIt.instance<HomeFavouriteCubit>();
 final homeSavedCubit = GetIt.instance<HomeSavedCubit>();
 final homeCubit = GetIt.instance<HomeCubit>();
+final weatherCubit = GetIt.instance<WeatherCubit>();

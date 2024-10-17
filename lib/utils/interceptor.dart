@@ -22,10 +22,12 @@ class ApiKeyInterceptor implements Interceptor {
       );
     }
     if (chain.request.uri.origin == UrlConstants.weatherBaseUrl) {
+      final parameters =
+          Map<String, dynamic>.from(chain.request.parameters)
+              .map(MapEntry<String, dynamic>.new);
+      parameters['key'] = Configurations.weatherApiKey;
       request = chain.request.copyWith(
-        parameters: {
-          'key': Configurations.weatherApiKey,
-        },
+        parameters: parameters
       );
     }
 

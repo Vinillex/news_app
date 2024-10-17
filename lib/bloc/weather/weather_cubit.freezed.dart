@@ -20,7 +20,7 @@ mixin _$WeatherState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) =>
@@ -29,7 +29,7 @@ mixin _$WeatherState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) =>
@@ -38,7 +38,7 @@ mixin _$WeatherState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),
@@ -138,7 +138,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) {
@@ -150,7 +150,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) {
@@ -162,7 +162,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),
@@ -261,7 +261,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) {
@@ -273,7 +273,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) {
@@ -285,7 +285,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),
@@ -346,6 +346,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Weather weather});
 }
 
 /// @nodoc
@@ -358,37 +360,62 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of WeatherState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? weather = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == weather
+          ? _value.weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as Weather,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.weather);
+
+  @override
+  final Weather weather;
 
   @override
   String toString() {
-    return 'WeatherState.success()';
+    return 'WeatherState.success(weather: $weather)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.weather, weather) || other.weather == weather));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, weather);
+
+  /// Create a copy of WeatherState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) {
-    return success();
+    return success(weather);
   }
 
   @override
@@ -396,11 +423,11 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) {
-    return success?.call();
+    return success?.call(weather);
   }
 
   @override
@@ -408,13 +435,13 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(weather);
     }
     return orElse();
   }
@@ -461,7 +488,15 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements WeatherState {
-  const factory _Success() = _$SuccessImpl;
+  const factory _Success(final Weather weather) = _$SuccessImpl;
+
+  Weather get weather;
+
+  /// Create a copy of WeatherState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -507,7 +542,7 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) {
@@ -519,7 +554,7 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) {
@@ -531,7 +566,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),
@@ -630,7 +665,7 @@ class _$NoCityImpl implements _NoCity {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(Weather weather) success,
     required TResult Function() failure,
     required TResult Function() noCity,
   }) {
@@ -642,7 +677,7 @@ class _$NoCityImpl implements _NoCity {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(Weather weather)? success,
     TResult? Function()? failure,
     TResult? Function()? noCity,
   }) {
@@ -654,7 +689,7 @@ class _$NoCityImpl implements _NoCity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(Weather weather)? success,
     TResult Function()? failure,
     TResult Function()? noCity,
     required TResult orElse(),

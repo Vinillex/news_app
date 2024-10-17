@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/home_all/home_all_cubit.dart';
 import 'package:news_app/utils/dependency.dart';
+import 'package:news_app/view/news_screen.dart';
 
 class HomeAll extends StatefulWidget {
   const HomeAll({super.key});
@@ -35,6 +36,13 @@ class _HomeAllState extends State<HomeAll> {
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NewsScreen(
+                          news: values[index],
+                        ),
+                      ));
+                    },
                     title: Text(values[index].title ?? ''),
                     trailing: IconButton(
                       onPressed: () {

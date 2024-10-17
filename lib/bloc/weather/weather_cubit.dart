@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:news_app/model/weather.dart';
 import 'package:news_app/services/weather_service.dart';
 import 'package:news_app/utils/api_calls.dart';
 import 'package:news_app/utils/dependency.dart';
@@ -18,7 +19,8 @@ class WeatherCubit extends Cubit<WeatherState> {
         final weatherService =
             ChopperUtils().chopper.getService<WeatherService>();
         final response = await weatherService.getWeather(city);
-        emit(const WeatherState.success());
+        final weather = Weather.fromJson(response.body as Map<String,dynamic>);
+        emit(WeatherState.success(weather));
       } catch (e) {
         emit(const WeatherState.failure());
       }

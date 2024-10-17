@@ -13,6 +13,6 @@ abstract class WeatherService extends ChopperService {
 
   @Get(path: UrlConstants.weatherPath)
   Future<Response<Map<String, dynamic>>> getWeather(
-    @Query() String city,
+    @Query() String q,
   );
 }

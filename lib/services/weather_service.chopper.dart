@@ -18,9 +18,9 @@ final class _$WeatherService extends WeatherService {
   final Type definitionType = WeatherService;
 
   @override
-  Future<Response<Map<String, dynamic>>> getWeather(String city) {
-    final Uri $url = Uri.parse('');
-    final Map<String, dynamic> $params = <String, dynamic>{'city': city};
+  Future<Response<Map<String, dynamic>>> getWeather(String q) {
+    final Uri $url = Uri.parse('https://api.weatherapi.com/v1/current.json');
+    final Map<String, dynamic> $params = <String, dynamic>{'q': q};
     final Request $request = Request(
       'GET',
       $url,
