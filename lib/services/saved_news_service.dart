@@ -1,0 +1,44 @@
+import 'package:isar/isar.dart';
+import 'package:news_app/model/news.dart';
+import 'package:path_provider/path_provider.dart';
+
+class SavedNewsService {
+
+  
+  Future<void> saveNews(News news) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final isar = await Isar.open(
+      [NewsSchema],
+      directory: dir.path,
+    );
+    await isar.writeTxn(() async {
+      await isar.news.put(news);
+    });
+
+    await isar.close();
+  }
+
+  Future<void> removeNews(int id) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final isar = await Isar.open(
+      [NewsSchema],
+      directory: dir.path,
+    );
+    await isar.writeTxn(() async {
+      await isar.news.delete(id);
+    });
+    
+    await isar.close();
+  }
+
+  Future<List<News>> getSavedNews() async {
+    final dir = await getApplicationDocumentsDirectory();
+    final isar = await Isar.open(
+      [NewsSchema],
+      directory: dir.path,
+    );
+    final list = await isar.news.where().findAll();
+    await isar.close();
+    return list;
+  }
+}
