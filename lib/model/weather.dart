@@ -248,8 +248,6 @@ class Condition {
 }
 
 class Location {
-  factory Location.fromRawJson(String str) =>
-      Location.fromJson(json.decode(str) as Map<String, dynamic>);
 
   Location({
     this.name,
@@ -261,6 +259,8 @@ class Location {
     this.localtimeEpoch,
     this.localtime,
   });
+  factory Location.fromRawJson(String str) =>
+      Location.fromJson(json.decode(str) as Map<String, dynamic>);
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
         name: json['name'] as String?,
@@ -317,14 +317,6 @@ class Location {
 }
 
 class AirQuality {
-  final double? co;
-  final double? no2;
-  final double? o3;
-  final int? so2;
-  final double? pm25;
-  final int? pm10;
-  final int? usepaindex;
-  final int? gbdefraindex;
 
   AirQuality({
     this.co,
@@ -336,6 +328,28 @@ class AirQuality {
     this.usepaindex,
     this.gbdefraindex,
   });
+
+  factory AirQuality.fromRawJson(String str) =>
+      AirQuality.fromJson(json.decode(str) as Map<String, dynamic>);
+
+  factory AirQuality.fromJson(Map<String, dynamic> json) => AirQuality(
+        co: json['co']?.toDouble() as double?,
+        no2: json['no2']?.toDouble() as double?,
+        o3: json['o3']?.toDouble() as double?,
+        so2: json['so2'] as int?,
+        pm25: json['pm2_5']?.toDouble() as double?,
+        pm10: json['pm10'] as int?,
+        usepaindex: json['us-epa-index'] as int?,
+        gbdefraindex: json['gb-defra-index'] as int?,
+      );
+  final double? co;
+  final double? no2;
+  final double? o3;
+  final int? so2;
+  final double? pm25;
+  final int? pm10;
+  final int? usepaindex;
+  final int? gbdefraindex;
 
   AirQuality copyWith({
     double? co,
@@ -358,21 +372,7 @@ class AirQuality {
         gbdefraindex: gbdefraindex ?? this.gbdefraindex,
       );
 
-  factory AirQuality.fromRawJson(String str) =>
-      AirQuality.fromJson(json.decode(str) as Map<String, dynamic>);
-
   String toRawJson() => json.encode(toJson());
-
-  factory AirQuality.fromJson(Map<String, dynamic> json) => AirQuality(
-        co: json['co']?.toDouble() as double?,
-        no2: json['no2']?.toDouble() as double?,
-        o3: json['o3']?.toDouble() as double?,
-        so2: json['so2'] as int?,
-        pm25: json['pm2_5']?.toDouble() as double?,
-        pm10: json['pm10'] as int?,
-        usepaindex: json['us-epa-index'] as int?,
-        gbdefraindex: json['gb-defra-index'] as int?,
-      );
 
   Map<String, dynamic> toJson() => {
         'co': co,

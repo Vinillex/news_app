@@ -83,10 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      WeatherCard(),
+                      const WeatherCard(),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.settings),
+                        icon: const Icon(Icons.settings),
                       ),
                     ],
                   ),

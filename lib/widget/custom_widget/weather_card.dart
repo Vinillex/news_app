@@ -37,7 +37,7 @@ class _WeatherCardState extends State<WeatherCard> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     Text(
@@ -63,8 +63,8 @@ class _WeatherCardState extends State<WeatherCard> {
               ],
             );
           }, orElse: () {
-            return SizedBox.shrink();
-          });
-        });
+            return const SizedBox.shrink();
+          },);
+        },);
   }
 }

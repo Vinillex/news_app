@@ -34,7 +34,7 @@ class HomeFavouriteCubit extends Cubit<HomeFavouriteState> {
             articles.map(
               (e) => News.fromJson(e as Map<String, dynamic>),
             ),
-          ),
+          ).where((e) => e.title != '[Removed]').toList(),
         );
       }
 

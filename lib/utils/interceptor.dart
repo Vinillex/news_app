@@ -27,7 +27,7 @@ class ApiKeyInterceptor implements Interceptor {
               .map(MapEntry<String, dynamic>.new);
       parameters['key'] = Configurations.weatherApiKey;
       request = chain.request.copyWith(
-        parameters: parameters
+        parameters: parameters,
       );
     }
 

@@ -19,7 +19,7 @@ class WeatherCubit extends Cubit<WeatherState> {
         final weatherService =
             ChopperUtils().chopper.getService<WeatherService>();
         final response = await weatherService.getWeather(city);
-        final weather = Weather.fromJson(response.body as Map<String,dynamic>);
+        final weather = Weather.fromJson(response.body!);
         emit(WeatherState.success(weather));
       } catch (e) {
         emit(const WeatherState.failure());

@@ -21,7 +21,7 @@ class HomeAllCubit extends Cubit<HomeAllState> {
         articles.map(
           (e) => News.fromJson(e as Map<String, dynamic>),
         ),
-      );
+      ).where((e) => e.title != '[Removed]').toList();
       emit(HomeAllState.success(list));
     } catch (e) {
       emit(const HomeAllState.failure());

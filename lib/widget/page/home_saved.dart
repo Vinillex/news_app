@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/home_saved/home_saved_cubit.dart';
 import 'package:news_app/utils/dependency.dart';
+import 'package:news_app/widget/custom_widget/news_card.dart';
 
 class HomeSaved extends StatefulWidget {
   const HomeSaved({super.key});
@@ -40,10 +41,11 @@ class _HomeSavedState extends State<HomeSaved> {
               padding: EdgeInsets.zero,
               itemCount: values.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(values[index].title ?? ''),
-                  ),
+                return NewsCard(
+                  news: values[index],
+                  onSaveStatusChange: () {
+                    
+                  },
                 );
               },
             );
