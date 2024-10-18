@@ -21,4 +21,16 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeState.noInternetState(greetings));
     }
   }
+
+  Future<void> getRefreshHomeState() async {
+    emit(const HomeState.loading());
+    final name = await onboardingService.getName();
+    final greetings = '${DateTime.now().getGreetingMessage()}, ${name!}';
+    final result = await InternetConnection().hasInternetAccess;
+    if (result) {
+      emit(HomeState.internetAvailable(greetings));
+    } else {
+      emit(HomeState.noInternetState(greetings));
+    }
+  }
 }

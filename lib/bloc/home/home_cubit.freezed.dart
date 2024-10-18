@@ -21,6 +21,7 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function(String greetings) noInternetState,
     required TResult Function(String greetings) internetAvailable,
+    required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$HomeState {
     TResult? Function()? initial,
     TResult? Function(String greetings)? noInternetState,
     TResult? Function(String greetings)? internetAvailable,
+    TResult? Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function(String greetings)? noInternetState,
     TResult Function(String greetings)? internetAvailable,
+    TResult Function()? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$HomeState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_NoInternetState value) noInternetState,
     required TResult Function(_InternetAvailableState value) internetAvailable,
+    required TResult Function(_Loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$HomeState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_NoInternetState value)? noInternetState,
     TResult? Function(_InternetAvailableState value)? internetAvailable,
+    TResult? Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_NoInternetState value)? noInternetState,
     TResult Function(_InternetAvailableState value)? internetAvailable,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function(String greetings) noInternetState,
     required TResult Function(String greetings) internetAvailable,
+    required TResult Function() loading,
   }) {
     return initial();
   }
@@ -136,6 +143,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function(String greetings)? noInternetState,
     TResult? Function(String greetings)? internetAvailable,
+    TResult? Function()? loading,
   }) {
     return initial?.call();
   }
@@ -146,6 +154,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function(String greetings)? noInternetState,
     TResult Function(String greetings)? internetAvailable,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -160,6 +169,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_NoInternetState value) noInternetState,
     required TResult Function(_InternetAvailableState value) internetAvailable,
+    required TResult Function(_Loading value) loading,
   }) {
     return initial(this);
   }
@@ -170,6 +180,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_NoInternetState value)? noInternetState,
     TResult? Function(_InternetAvailableState value)? internetAvailable,
+    TResult? Function(_Loading value)? loading,
   }) {
     return initial?.call(this);
   }
@@ -180,6 +191,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_NoInternetState value)? noInternetState,
     TResult Function(_InternetAvailableState value)? internetAvailable,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -266,6 +278,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     required TResult Function() initial,
     required TResult Function(String greetings) noInternetState,
     required TResult Function(String greetings) internetAvailable,
+    required TResult Function() loading,
   }) {
     return noInternetState(greetings);
   }
@@ -276,6 +289,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     TResult? Function()? initial,
     TResult? Function(String greetings)? noInternetState,
     TResult? Function(String greetings)? internetAvailable,
+    TResult? Function()? loading,
   }) {
     return noInternetState?.call(greetings);
   }
@@ -286,6 +300,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     TResult Function()? initial,
     TResult Function(String greetings)? noInternetState,
     TResult Function(String greetings)? internetAvailable,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (noInternetState != null) {
@@ -300,6 +315,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_NoInternetState value) noInternetState,
     required TResult Function(_InternetAvailableState value) internetAvailable,
+    required TResult Function(_Loading value) loading,
   }) {
     return noInternetState(this);
   }
@@ -310,6 +326,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_NoInternetState value)? noInternetState,
     TResult? Function(_InternetAvailableState value)? internetAvailable,
+    TResult? Function(_Loading value)? loading,
   }) {
     return noInternetState?.call(this);
   }
@@ -320,6 +337,7 @@ class _$NoInternetStateImpl implements _NoInternetState {
     TResult Function(_Initial value)? initial,
     TResult Function(_NoInternetState value)? noInternetState,
     TResult Function(_InternetAvailableState value)? internetAvailable,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (noInternetState != null) {
@@ -417,6 +435,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     required TResult Function() initial,
     required TResult Function(String greetings) noInternetState,
     required TResult Function(String greetings) internetAvailable,
+    required TResult Function() loading,
   }) {
     return internetAvailable(greetings);
   }
@@ -427,6 +446,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     TResult? Function()? initial,
     TResult? Function(String greetings)? noInternetState,
     TResult? Function(String greetings)? internetAvailable,
+    TResult? Function()? loading,
   }) {
     return internetAvailable?.call(greetings);
   }
@@ -437,6 +457,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     TResult Function()? initial,
     TResult Function(String greetings)? noInternetState,
     TResult Function(String greetings)? internetAvailable,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (internetAvailable != null) {
@@ -451,6 +472,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_NoInternetState value) noInternetState,
     required TResult Function(_InternetAvailableState value) internetAvailable,
+    required TResult Function(_Loading value) loading,
   }) {
     return internetAvailable(this);
   }
@@ -461,6 +483,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_NoInternetState value)? noInternetState,
     TResult? Function(_InternetAvailableState value)? internetAvailable,
+    TResult? Function(_Loading value)? loading,
   }) {
     return internetAvailable?.call(this);
   }
@@ -471,6 +494,7 @@ class _$InternetAvailableStateImpl implements _InternetAvailableState {
     TResult Function(_Initial value)? initial,
     TResult Function(_NoInternetState value)? noInternetState,
     TResult Function(_InternetAvailableState value)? internetAvailable,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (internetAvailable != null) {
@@ -491,4 +515,121 @@ abstract class _InternetAvailableState implements HomeState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InternetAvailableStateImplCopyWith<_$InternetAvailableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
+
+  @override
+  String toString() {
+    return 'HomeState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String greetings) noInternetState,
+    required TResult Function(String greetings) internetAvailable,
+    required TResult Function() loading,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(String greetings)? noInternetState,
+    TResult? Function(String greetings)? internetAvailable,
+    TResult? Function()? loading,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String greetings)? noInternetState,
+    TResult Function(String greetings)? internetAvailable,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_NoInternetState value) noInternetState,
+    required TResult Function(_InternetAvailableState value) internetAvailable,
+    required TResult Function(_Loading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_NoInternetState value)? noInternetState,
+    TResult? Function(_InternetAvailableState value)? internetAvailable,
+    TResult? Function(_Loading value)? loading,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_NoInternetState value)? noInternetState,
+    TResult Function(_InternetAvailableState value)? internetAvailable,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements HomeState {
+  const factory _Loading() = _$LoadingImpl;
 }
