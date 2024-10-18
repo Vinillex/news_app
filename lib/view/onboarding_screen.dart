@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:news_app/bloc/initial_cubit/initial_cubit.dart';
 import 'package:news_app/bloc/onboarding/onboarding_cubit.dart';
-import 'package:news_app/utils/dependency.dart';
 import 'package:news_app/widget/page/onboarding_categories.dart';
 import 'package:news_app/widget/page/onboarding_city.dart';
 import 'package:news_app/widget/page/onboarding_name.dart';
@@ -16,8 +17,13 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
 
+  final OnboardingCubit _onboardingCubit = GetIt.I<OnboardingCubit>();
+  final InitialCubit _initialCubit = GetIt.I<InitialCubit>();
+
   @override
   void dispose() {
+    // _onboardingCubit = GetIt.I<OnboardingCubit>();
+    // _initialCubit = GetIt.I<InitialCubit>();
     _controller.dispose();
     super.dispose();
   }
@@ -25,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<OnboardingCubit, OnboardingState>(
-      bloc: onboardingCubit,
+      bloc: _onboardingCubit,
       listener: (context, state) {
         state.when(
           initial: () {},
@@ -42,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             );
           },
           submitCity: () {
-            initialCubit.getInitialState();
+            _initialCubit.getInitialState();
           },
         );
       },
@@ -51,13 +57,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           controller: _controller,
           children: [
             OnboardingName(
-              onSubmit: onboardingCubit.submitName,
+              onSubmit: _onboardingCubit.submitName,
             ),
             OnboardingCategories(
-              onSubmit: onboardingCubit.submitCategories,
+              onSubmit: _onboardingCubit.submitCategories,
             ),
             OnboardingCity(
-              onSubmit: onboardingCubit.submitCity,
+              onSubmit: _onboardingCubit.submitCity,
             ),
           ],
         ),

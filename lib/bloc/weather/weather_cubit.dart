@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:news_app/model/weather.dart';
+import 'package:news_app/services/onboarding_service.dart';
 import 'package:news_app/services/weather_service.dart';
 import 'package:news_app/utils/api_calls.dart';
-import 'package:news_app/utils/dependency.dart';
 
 part 'weather_state.dart';
 part 'weather_cubit.freezed.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {
-  WeatherCubit() : super(const WeatherState.initial());
+  WeatherCubit(this.onboardingService) : super(const WeatherState.initial());
+  final OnboardingService onboardingService;
 
   Future<void> getWeatherData() async {
     emit(const WeatherState.loading());

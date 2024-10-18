@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:news_app/bloc/location/location_cubit.dart';
-import 'package:news_app/utils/dependency.dart';
 
 class OnboardingCity extends StatefulWidget {
   const OnboardingCity({required this.onSubmit, super.key});
@@ -17,8 +17,11 @@ class _OnboardingCityState extends State<OnboardingCity> {
   final ValueNotifier<bool> _isSkippable = ValueNotifier<bool>(true);
   final FocusNode _focusNode = FocusNode();
 
+  late LocationCubit _locationCubit;
+
   @override
   void initState() {
+    _locationCubit = GetIt.I<LocationCubit>();
     _controller.addListener(() {
       if (_controller.text.isNotEmpty) {
         _isSkippable.value = false;
@@ -40,7 +43,7 @@ class _OnboardingCityState extends State<OnboardingCity> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LocationCubit, LocationState>(
-      bloc: locationCubit,
+      bloc: _locationCubit,
       listener: (context, state) {
         state.maybeWhen(
           orElse: () {},
@@ -72,7 +75,7 @@ class _OnboardingCityState extends State<OnboardingCity> {
               ],
             ),
             TextButton(
-              onPressed: locationCubit.getLocation,
+              onPressed: _locationCubit.getLocation,
               child: const Text(
                 'Auto Fill',
               ),

@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/model/news.dart';
+import 'package:news_app/widget/custom_widget/save_button.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -65,16 +67,31 @@ class _NewsScreenState extends State<NewsScreen> {
                     },
                     icon: const Icon(Icons.share),
                   ),
-                  IconButton(
-                    onPressed: () async {},
-                    icon: const Icon(Icons.save),
+                  SaveButton(
+                    news: widget.news,
                   ),
                 ],
               ),
               const SizedBox(
                 height: 6,
               ),
-              Image.network(widget.news.urlToImage!),
+              AspectRatio(
+                aspectRatio: 3 / 2,
+                child: CachedNetworkImage(
+                  imageUrl: widget.news.urlToImage!,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    return const Center(
+                      child: Text('Cannot display image'),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(
                 height: 12,
               ),
@@ -88,15 +105,17 @@ class _NewsScreenState extends State<NewsScreen> {
               const SizedBox(
                 height: 12,
               ),
-              IconButton(
-                onPressed: () async {
-                  final url = Uri.parse(widget.news.url!);
-                  await launchUrl(
-                    url,
-                    mode: LaunchMode.inAppWebView,
-                  );
-                },
-                icon: const Icon(Icons.arrow_forward_sharp),
+              Align(
+                child: IconButton(
+                  onPressed: () async {
+                    final url = Uri.parse(widget.news.url!);
+                    await launchUrl(
+                      url,
+                      mode: LaunchMode.inAppWebView,
+                    );
+                  },
+                  icon: const Icon(Icons.arrow_forward_sharp),
+                ),
               ),
             ],
           ),

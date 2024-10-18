@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:news_app/bloc/weather/weather_cubit.dart';
-import 'package:news_app/utils/dependency.dart';
 
 class WeatherCard extends StatefulWidget {
   const WeatherCard({super.key});
@@ -11,18 +11,22 @@ class WeatherCard extends StatefulWidget {
 }
 
 class _WeatherCardState extends State<WeatherCard> {
+  late WeatherCubit _weatherCubit;
+
   @override
   void initState() {
-    weatherCubit.getWeatherData();
+    _weatherCubit = GetIt.I<WeatherCubit>();
+    _weatherCubit.getWeatherData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubit, WeatherState>(
-        bloc: weatherCubit,
-        builder: (context, state) {
-          return state.maybeWhen(success: (weather) {
+      bloc: _weatherCubit,
+      builder: (context, state) {
+        return state.maybeWhen(
+          success: (weather) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -62,9 +66,12 @@ class _WeatherCardState extends State<WeatherCard> {
                 ),
               ],
             );
-          }, orElse: () {
+          },
+          orElse: () {
             return const SizedBox.shrink();
-          },);
-        },);
+          },
+        );
+      },
+    );
   }
 }

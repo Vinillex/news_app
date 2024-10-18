@@ -1,15 +1,13 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/view/news_screen.dart';
 
 class NewsCard extends StatelessWidget {
+  const NewsCard(
+      {required this.news, super.key, this.onSaveStatusChange, this.onSaved,});
   final News news;
   final void Function()? onSaveStatusChange;
   final void Function()? onSaved;
-  const NewsCard(
-      {super.key, this.onSaveStatusChange, this.onSaved, required this.news});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +23,9 @@ class NewsCard extends StatelessWidget {
             ),
           )
               .then((value) {
-                if(onSaveStatusChange != null){
-                  onSaveStatusChange.call();
-                }
+            if (onSaveStatusChange != null) {
+              onSaveStatusChange!();
+            }
           });
         },
         title: Text(news.title ?? ''),

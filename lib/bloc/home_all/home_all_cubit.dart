@@ -2,14 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/services/news_service.dart';
+import 'package:news_app/services/saved_news_service.dart';
 import 'package:news_app/utils/api_calls.dart';
-import 'package:news_app/utils/dependency.dart';
 
 part 'home_all_state.dart';
 part 'home_all_cubit.freezed.dart';
 
 class HomeAllCubit extends Cubit<HomeAllState> {
-  HomeAllCubit() : super(const HomeAllState.initial());
+  HomeAllCubit(this.savedNewsService) : super(const HomeAllState.initial());
+  final SavedNewsService savedNewsService;
 
   Future<void> getAllNews() async {
     emit(const HomeAllState.loading());

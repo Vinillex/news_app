@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:news_app/bloc/home/home_cubit.dart';
-import 'package:news_app/utils/dependency.dart';
 import 'package:news_app/widget/custom_widget/weather_card.dart';
 import 'package:news_app/widget/page/home_all.dart';
 import 'package:news_app/widget/page/home_favourite.dart';
@@ -18,9 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final PageController _controller = PageController(initialPage: 1);
   final ValueNotifier<int> _indexNotifier = ValueNotifier<int>(1);
 
+  late HomeCubit _homeCubit;
+
   @override
   void initState() {
-    homeCubit.getHomeState();
+    _homeCubit = GetIt.I<HomeCubit>();
+    _homeCubit.getHomeState();
     _controller.addListener(() {
       if (_controller.page == _controller.page!.toInt()) {
         _indexNotifier.value = _controller.page!.toInt();
@@ -43,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 BlocConsumer<HomeCubit, HomeState>(
-                  bloc: homeCubit,
+                  bloc: _homeCubit,
                   listener: (context, state) {
                     state.maybeMap(
                       noInternetState: (value) {
@@ -83,7 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const WeatherCard(),
+                      const Expanded(
+                        child: WeatherCard(),
+                      ),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.settings),

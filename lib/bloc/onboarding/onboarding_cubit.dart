@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:news_app/utils/dependency.dart';
+import 'package:news_app/services/onboarding_service.dart';
 
 part 'onboarding_state.dart';
 part 'onboarding_cubit.freezed.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
-  OnboardingCubit() : super(const OnboardingState.initial());
-
+  OnboardingCubit(this.onboardingService) : super(const OnboardingState.initial());
+  final OnboardingService onboardingService;
 
   void submitName(String name) {
     onboardingService.setName(name);

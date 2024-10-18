@@ -3,14 +3,18 @@ import 'package:chopper/chopper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/services/news_service.dart';
+import 'package:news_app/services/onboarding_service.dart';
+import 'package:news_app/services/saved_news_service.dart';
 import 'package:news_app/utils/api_calls.dart';
-import 'package:news_app/utils/dependency.dart';
 
 part 'home_favourite_state.dart';
 part 'home_favourite_cubit.freezed.dart';
 
 class HomeFavouriteCubit extends Cubit<HomeFavouriteState> {
-  HomeFavouriteCubit() : super(const HomeFavouriteState.initial());
+  HomeFavouriteCubit(this.onboardingService, this.savedNewsService)
+      : super(const HomeFavouriteState.initial());
+  final OnboardingService onboardingService;
+  final SavedNewsService savedNewsService;
 
   Future<void> getFavouritesNews() async {
     emit(const HomeFavouriteState.loading());
