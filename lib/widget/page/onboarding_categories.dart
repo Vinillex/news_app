@@ -57,9 +57,10 @@ class _OnboardingCategoriesState extends State<OnboardingCategories> {
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: selectedCategories.contains(categories[index])
-                          ? Colors.yellow
+                          ? Colors.purple.shade100
                           : Colors.white,
                       border: Border.all(),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       categories[index],

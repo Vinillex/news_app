@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:news_app/bloc/settings/settings_cubit.dart';
@@ -62,27 +61,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
                 Column(
                   children: [
                     NameCard(
                       name: name,
-                      onSubmit: (name) {
-                        _settingsCubit.setName(name);
-                      },
+                      onSubmit: _settingsCubit.setName,
                     ),
                     CategoriesCard(
                       selectedCategories: categories,
-                      onSubmit: (categories) {
-                        _settingsCubit.setCategories(categories);
-                      },
+                      onSubmit: _settingsCubit.setCategories,
                     ),
                     CityCard(
-                      onSubmit: (city) {
-                        _settingsCubit.setCity(city);
-                      },
+                      onSubmit: _settingsCubit.setCity,
                       city: city,
                     ),
                   ],
@@ -91,8 +84,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           );
         }, orElse: () {
-          return SizedBox.shrink();
-        });
+          return const SizedBox.shrink();
+        },);
       },
     );
   }

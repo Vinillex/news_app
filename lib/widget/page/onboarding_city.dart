@@ -65,6 +65,7 @@ class _OnboardingCityState extends State<OnboardingCity> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              decoration: InputDecoration(hintText: 'Enter your city name'),
               controller: _controller,
               focusNode: _focusNode,
               onTapOutside: (event) {

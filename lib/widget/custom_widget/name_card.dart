@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NameCard extends StatefulWidget {
+  const NameCard({
+    required this.onSubmit, required this.name, super.key,
+  });
   final String name;
   final void Function(String) onSubmit;
-  const NameCard({
-    super.key,
-    required this.onSubmit,
-    required this.name,
-  });
 
   @override
   State<NameCard> createState() => _NameCardState();
@@ -47,6 +45,9 @@ class _NameCardState extends State<NameCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              decoration: InputDecoration(
+                  hintText: 'Enter your name'
+                ),
               controller: _controller,
               focusNode: _focusNode,
               onTapOutside: (event) {

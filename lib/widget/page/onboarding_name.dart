@@ -36,6 +36,7 @@ class _OnboardingNameState extends State<OnboardingName> {
             TextFormField(
               controller: _controller,
               focusNode: _focusNode,
+              decoration: InputDecoration(hintText: 'Enter your name'),
               onTapOutside: (event) {
                 _focusNode.unfocus();
               },

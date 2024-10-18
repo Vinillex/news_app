@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CategoriesCard extends StatefulWidget {
-  final void Function(List<String>) onSubmit;
-  final List<String> selectedCategories;
   const CategoriesCard({
-    super.key,
     required this.onSubmit,
     required this.selectedCategories,
+    super.key,
   });
+  final void Function(List<String>) onSubmit;
+  final List<String> selectedCategories;
 
   @override
   State<CategoriesCard> createState() => _CategoriesCardState();
@@ -76,11 +76,11 @@ class _CategoriesCardState extends State<CategoriesCard> {
                       height: 40,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: selectedCategories.contains(categories[index])
-                            ? Colors.yellow
-                            : Colors.white,
-                        border: Border.all(),
-                      ),
+                          color: selectedCategories.contains(categories[index])
+                              ? Colors.purple.shade100
+                              : Colors.white,
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12)),
                       child: Text(
                         categories[index],
                         textAlign: TextAlign.center,

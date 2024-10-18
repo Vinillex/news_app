@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
+                              const Expanded(
                                 child: WeatherCard(),
                               ),
                               IconButton(
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return SettingsScreen();
+                                        return const SettingsScreen();
                                       },
                                     ),
                                   ).then((value) {
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: PageView(
                       controller: _controller,
-                      children: [
+                      children: const [
                         HomeAll(),
                         HomeFavourite(),
                         HomeSaved(),
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return SettingsScreen();
+                                        return const SettingsScreen();
                                       },
                                     ),
                                   ).then((value) {
@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
           loading: () {
-            return Scaffold(
+            return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),

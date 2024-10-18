@@ -1,14 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:news_app/services/onboarding_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_state.dart';
 part 'settings_cubit.freezed.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
+  SettingsCubit(this.onboardingService) : super(const SettingsState.initial());
   final OnboardingService onboardingService;
-  SettingsCubit(this.onboardingService) : super(SettingsState.initial());
 
   Future<void> getSettings() async {
     final name = await onboardingService.getName();

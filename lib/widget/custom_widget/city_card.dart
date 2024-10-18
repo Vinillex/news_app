@@ -5,9 +5,9 @@ import 'package:get_it/get_it.dart';
 import 'package:news_app/bloc/location/location_cubit.dart';
 
 class CityCard extends StatefulWidget {
+  const CityCard({required this.onSubmit, super.key, this.city});
   final String? city;
   final void Function(String) onSubmit;
-  const CityCard({super.key, required this.onSubmit, this.city});
 
   @override
   State<CityCard> createState() => _CityCardState();
@@ -69,6 +69,9 @@ class _CityCardState extends State<CityCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Enter your city name'
+                ),
                 controller: _controller,
                 focusNode: _focusNode,
                 onTapOutside: (event) {
